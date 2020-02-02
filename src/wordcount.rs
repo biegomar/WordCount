@@ -26,9 +26,9 @@ impl WordCounter {
         }
     }
 
-    fn display_with_filter(&self, filter: &String) {
+    fn display_with_filter(&self, filter: &u64) {
         for (key, value) in self.0.iter() {
-            if value.to_string() >= filter.to_string() {
+            if value >= filter {
                 println!("{}: {}", key, value);
             }
         }
@@ -36,9 +36,9 @@ impl WordCounter {
 }
 
 fn main() {
-    let arguments: Vec<String> = env::args().collect();
+    let arguments: Vec<_> = env::args().collect();
     let filename = &arguments[1];
-    let filter = &arguments[2];
+    let filter: &u64 = &arguments[2].parse().unwrap();
     println!("Processing file: {}", filename);
     let file = File::open(filename).expect("Could not open file.");
     let reader = BufReader::new(file);
