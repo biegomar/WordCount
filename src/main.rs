@@ -10,7 +10,7 @@ use std::io::BufReader;
 struct WordCounter(HashMap<String, u64>);
 
 impl WordCounter {
-    fn new() -> WordCounter {
+    fn new() -> Self {
         WordCounter(HashMap::new())
     }
 
